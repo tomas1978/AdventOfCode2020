@@ -1,10 +1,22 @@
+validPassports=0
+
 entries = []
 file = open('input.txt', 'r')
+
+str=""
 for line in file:
-    entries.append(line)
+    str+=line
+    if(str=="\n"):
+        str="";
+    entries.append(str)
 file.close()
 
-#Trying to read all but empty lines
+#for i in range(0,len(entries)):
+#    entries[i]=entries[i].replace('\n'," ")
+
 for i in range(0,20):
-    if(entries[i] != ""):
-        print(entries[i])
+    print(entries[i])
+
+
+
+
