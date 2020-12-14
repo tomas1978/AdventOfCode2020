@@ -1,22 +1,41 @@
-validPassports=0
+#Day 4 part 1, not yet correct
 
-entries = []
+validPassports = 0
+lines = []      #lines read from the file
+entries = []    #for complete lines of passport entries
+
 file = open('input.txt', 'r')
 
-str=""
 for line in file:
-    str+=line
-    if(str=="\n"):
-        str="";
-    entries.append(str)
+    if (line!="\n"):
+        lines.append(line.strip())
+    else:
+        lines.append("\n")
 file.close()
 
-#for i in range(0,len(entries)):
-#    entries[i]=entries[i].replace('\n'," ")
+#Remove newlines to create entries with all data for
+#one passport on a single line
+str=""
+for i in range(1,len(lines)):
+    if(lines[i]!="\n"):
+        str+=lines[i]
+    else:
+        entries.append(str)
+        str=""
 
-for i in range(0,20):
-    print(entries[i])
+#Check and count valid passports
+for i in range(0,len(entries)):
+    if(entries[i].find("byr",0,len(entries[i])) and 
+       entries[i].find("iyr",0,len(entries[i])) and
+       entries[i].find("eyr",0,len(entries[i])) and
+       entries[i].find("hgt",0,len(entries[i])) and
+       entries[i].find("hcl",0,len(entries[i])) and
+       entries[i].find("ecl",0,len(entries[i])) and
+       entries[i].find("pid",0,len(entries[i]))):
+        validPassports+=1
 
-
+print("Number of valid passports: ")
+print(validPassports)
+                    
 
 
